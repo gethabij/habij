@@ -55,7 +55,7 @@ function JournalInput(props: Readonly<Props>) {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Jot down your logs..."
-                    className=" rounded-full"
+                    className=" rounded-full bg-border  focus-visible:ring-transparent "
                     onKeyDown={(e) => {
                       if (
                         e.key === "Enter" &&
@@ -69,7 +69,7 @@ function JournalInput(props: Readonly<Props>) {
                     end={
                       <Button
                         onClick={handleSend}
-                        className="rounded-full py-6 px-4"
+                        className="rounded-full py-6 px-4 "
                       >
                         <Send />
                       </Button>
