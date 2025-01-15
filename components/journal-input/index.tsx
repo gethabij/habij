@@ -54,7 +54,7 @@ function JournalInput(props: Readonly<Props>) {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Jot your task..."
-                    className="flex-1"
+                    className=" rounded-full"
                     onKeyDown={(e) => {
                       if (
                         e.key === "Enter" &&
@@ -66,7 +66,7 @@ function JournalInput(props: Readonly<Props>) {
                       }
                     }}
                     end={
-                      <Button onClick={handleSend}>
+                      <Button onClick={handleSend} className="rounded-full">
                         <Send />
                       </Button>
                     }

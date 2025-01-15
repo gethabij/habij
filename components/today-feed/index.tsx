@@ -13,7 +13,7 @@ const TodayFeed = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4 space-y-4 h-full ">
+    <div className="flex flex-col items-center p-4 h-full ">
       <div className="w-full h-full flex-1 overflow-y-auto">
         <JournalLogs messages={messages} />
       </div>
