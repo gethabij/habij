@@ -67,7 +67,10 @@ function JournalInput(props: Readonly<Props>) {
                       }
                     }}
                     end={
-                      <Button onClick={handleSend} className="rounded-full">
+                      <Button
+                        onClick={handleSend}
+                        className="rounded-full py-6 px-4"
+                      >
                         <Send />
                       </Button>
                     }
