@@ -8,31 +8,32 @@ interface InputProps extends React.ComponentProps<"input"> {
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
+  ({ className, type, start, end, ...props }, ref) => {
     return (
       <div
         className={cn(
-          "flex h-9 w-full rounded-md  border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+          "relative flex w-full  rounded-md border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
           className
         )}
       >
-        {props.start && (
+        {start && (
           <div className="flex justify-center items-center pl-2 text-sm text-gray-600 ">
-            {props.start}
+            {start}
           </div>
         )}
         <input
           type={type}
           className={cn(
-            "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
-            className
+            "flex h-9 w-full rounded-md border border-input bg-white px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+            className,
+            { "pr-20": end }
           )}
           ref={ref}
           {...props}
         />
-        {props.end && (
-          <div className="flex justify-center items-center pl-2 text-sm text-gray-600 ">
-            {props.end}
+        {end && (
+          <div className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-600 flex items-center">
+            {end}
           </div>
         )}
       </div>

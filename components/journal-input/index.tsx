@@ -15,6 +15,7 @@ import {
   FormItem,
   FormMessage,
 } from "../ui/form";
+import { Input } from "../ui/input";
 
 function JournalInput(props: Readonly<Props>) {
   const { onSend } = props;
@@ -50,10 +51,10 @@ function JournalInput(props: Readonly<Props>) {
             render={() => (
               <FormItem>
                 <FormControl>
-                  <Textarea
+                  <Input
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Jot your task..."
+                    placeholder="Jot down your logs..."
                     className=" rounded-full"
                     onKeyDown={(e) => {
                       if (
