@@ -9,7 +9,7 @@ const TodayFeed = () => {
 
   const handleSendMessage = (message: string) => {
     if (!message.trim()) return;
-    setMessages((prev) => [...prev, message]);
+    setMessages((prev) => [message, ...prev]);
   };
 
   return (
