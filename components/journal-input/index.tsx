@@ -39,7 +39,7 @@ function JournalInput(props: Readonly<Props>) {
   });
 
   return (
-    <div className="flex items-center w-full space-x-2">
+    <div className="flex items-center w-full space-x-2 text-base">
       <Form {...form} register={register}>
         <form
           onSubmit={form.handleSubmit(handleSend)}
@@ -55,7 +55,7 @@ function JournalInput(props: Readonly<Props>) {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Jot down your logs..."
-                    className=" rounded-full bg-border  focus-visible:ring-transparent "
+                    className=" rounded-full bg-border  focus-visible:ring-transparent text-base"
                     onKeyDown={(e) => {
                       if (
                         e.key === "Enter" &&
