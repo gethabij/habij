@@ -43,7 +43,7 @@ function JournalInput(props: Readonly<Props>) {
       <Form {...form} register={register}>
         <form
           onSubmit={form.handleSubmit(handleSend)}
-          className=" w-full px-3 py-5 flex flex-col items-between h-full"
+          className=" w-full  pt-5 flex flex-col items-between h-full"
         >
           <FormField
             control={form.control}
