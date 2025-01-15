@@ -14,8 +14,10 @@ const TodayFeed = () => {
 
   return (
     <div className="flex flex-col items-center p-4 space-y-4 h-full ">
-      <JournalLogs messages={messages} />
-      <div className="!mt-auto w-full fixed bottom-2 ">
+      <div className="w-full h-full flex-1 overflow-y-auto">
+        <JournalLogs messages={messages} />
+      </div>
+      <div className="w-full  pb-2 ">
         <JournalInput onSend={handleSendMessage} />
       </div>
     </div>
