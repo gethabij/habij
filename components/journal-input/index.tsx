@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Button } from "../ui/button";
 import Props from "./types";
-import { Textarea } from "../ui/textarea";
 import { Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -56,16 +55,16 @@ function JournalInput(props: Readonly<Props>) {
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Jot down your logs..."
                     className=" rounded-full bg-border  focus-visible:ring-transparent text-base"
-                    onKeyDown={(e) => {
-                      if (
-                        e.key === "Enter" &&
-                        !e.shiftKey &&
-                        "form" in e.target
-                      ) {
-                        e.preventDefault();
-                        (e.target.form as HTMLFormElement).requestSubmit();
-                      }
-                    }}
+                    // onKeyDown={(e) => {
+                    //   if (
+                    //     e.key === "Enter" &&
+                    //     !e.shiftKey &&
+                    //     "form" in e.target
+                    //   ) {
+                    //     e.preventDefault();
+                    //     (e.target.form as HTMLFormElement).requestSubmit();
+                    //   }
+                    // }}
                     end={
                       <Button
                         onClick={handleSend}
