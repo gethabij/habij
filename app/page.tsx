@@ -1,5 +1,4 @@
 import LoginForm from "@/components/login-form";
-import TodayFeed from "@/components/today-feed";
 
 export default function Home() {
   return (
