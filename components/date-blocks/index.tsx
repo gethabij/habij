@@ -28,7 +28,7 @@ function DateBlocks() {
       className="w-full overflow-x-scroll [scrollbar-width:none]  scrollbar-hide"
       ref={containerRef}
     >
-      <div className="flex space-x-2 px-4">
+      <div className="flex space-x-1 px-4">
         {dates.map((date, index) => (
           <Card
             key={index}
