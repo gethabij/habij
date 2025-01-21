@@ -27,6 +27,7 @@ function LoginForm() {
   async function onSubmit(values: LoginModel) {
     try {
       // await handlePostLogin(redirectTo, values.username, values.password);
+      console.log(values.email, values.password);
     } catch (error) {
       console.log(error);
       HandleError(error);
