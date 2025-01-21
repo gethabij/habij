@@ -13,7 +13,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div
         className={cn(
           "relative flex w-full  rounded-md border  focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring ",
-          className
+          className,
         )}
       >
         {start && (
@@ -26,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className={cn(
             "flex w-full h-full rounded-md border border-input bg-white px-3 py-6 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
             className,
-            { "pr-20": end }
+            { "pr-20": end },
           )}
           ref={ref}
           {...props}
@@ -38,7 +38,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 Input.displayName = "Input";
 
