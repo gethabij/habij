@@ -8,7 +8,7 @@ interface TextareaProps extends React.ComponentProps<"textarea"> {
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, start, end, rows = 1, ...props }, ref) => {
+  ({ className, start, end, ...props }, ref) => {
     return (
       <div
         className={cn(

@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import JournalInput from "../journal-input";
 import JournalLogs from "../journal-logs";
+import DateBlocks from "../date-blocks";
 
 const TodayFeed = () => {
   const [messages, setMessages] = useState<string[]>([]);
@@ -14,6 +15,7 @@ const TodayFeed = () => {
 
   return (
     <div className="flex flex-col items-center p-4 h-full ">
+      <DateBlocks />
       <div className="w-full h-full flex-1 overflow-y-auto">
         <JournalLogs messages={messages} />
       </div>
