@@ -1,0 +1,3 @@
+[submodule "lib/types/api"]
+	path = lib/types/api
+	url = https://github.com/gethabij/habij-types.git
