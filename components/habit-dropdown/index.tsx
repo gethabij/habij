@@ -28,14 +28,14 @@ const HabitDropdown = (props: Readonly<Props>) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 text-xs space-y-2 ml-4  border-orange-100 bg-orange-100">
         {habits.length === 0 ? (
-          <div className="flex flex-col">
+          <div className="flex flex-col text-center">
             <span>Find one thing you enjoy and make it a habit.</span>
             <span>Every little step counts!</span>
           </div>
         ) : (
           habits?.map((habit, index) => (
             <div
-              key={index}
+              key={habit.message}
               className="flex flex-row gap-2 items-center justify-between"
             >
               <label

@@ -82,7 +82,7 @@ function JournalInput(props: Readonly<Props>) {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Jot down your logs..."
-                    className=" rounded-full bg-border  focus-visible:ring-transparent text-base"
+                    className=" rounded-full bg-border  focus-visible:ring-transparent text-base p-1"
                     // onKeyDown={(e) => {
                     //   if (
                     //     e.key === "Enter" &&
@@ -102,7 +102,7 @@ function JournalInput(props: Readonly<Props>) {
                           <PopoverAnchor>
                             <Button
                               {...longPressEvent}
-                              className="rounded-full py-6 px-4 "
+                              className="rounded-full h-7 w-7 "
                             >
                               <Send />
                             </Button>

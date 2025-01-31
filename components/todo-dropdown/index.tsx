@@ -24,7 +24,7 @@ const TodoDropdown = (props: Readonly<Props>) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 text-xs space-y-2 mr-4  border-purple-100 bg-purple-100">
         {todos.length === 0 ? (
-          <div className="flex flex-col">
+          <div className="flex flex-col text-center">
             <span>You don&apos;t have any todos yet</span>
             <span>Time to relax and enjoy!</span>
           </div>
