@@ -4,6 +4,7 @@ import Props from "./types";
 
 const JournalLogs = (props: Readonly<Props>) => {
   const { messages } = props;
+
   return (
     <div className="flex flex-col-reverse space-y-reverse  w-full space-y-2  h-full overflow-y-auto">
       {messages.map((message, index) => (

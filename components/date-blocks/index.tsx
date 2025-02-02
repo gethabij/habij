@@ -25,7 +25,7 @@ function DateBlocks() {
 
   return (
     <div
-      className="w-full overflow-x-scroll [scrollbar-width:none]  scrollbar-hide"
+      className="w-full overflow-x-scroll [scrollbar-width:none]  scrollbar-hide z-10"
       ref={containerRef}
     >
       <div className="flex space-x-1 px-4">

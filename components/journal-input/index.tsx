@@ -15,16 +15,32 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
+import useLongPress from "@/lib/hooks/use-long-press";
+
+import { Popover, PopoverContent, PopoverAnchor } from "../ui/popover";
+import { Separator } from "../ui/separator";
 
 function JournalInput(props: Readonly<Props>) {
-  const { onSend } = props;
+  const { onSend, onAddTodo, onAddHabit } = props;
 
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState<string>("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleSend = () => {
     onSend(inputValue);
     setInputValue("");
   };
+  const onLongPress = () => {
+    console.log("hey");
+    setDropdownOpen(true);
+  };
+
+  const defaultOptions = {
+    shouldPreventDefault: true,
+    delay: 500,
+  };
+
+  const longPressEvent = useLongPress(onLongPress, handleSend, defaultOptions);
 
   const Schema = z.object({
     task: z.string({ required_error: "Please add a task" }),
@@ -36,6 +52,18 @@ function JournalInput(props: Readonly<Props>) {
       task: "",
     },
   });
+
+  const handleAddItem = (type: "todo" | "habit") => {
+    if (inputValue.trim()) {
+      if (type === "todo") {
+        onAddTodo(inputValue);
+      } else if (type === "habit") {
+        onAddHabit(inputValue);
+      }
+      setInputValue(""); // Clear input after adding
+      setDropdownOpen(false); // Close the dropdown after adding
+    }
+  };
 
   return (
     <div className="flex items-center w-full space-x-2 text-base">
@@ -54,7 +82,7 @@ function JournalInput(props: Readonly<Props>) {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Jot down your logs..."
-                    className=" rounded-full bg-border  focus-visible:ring-transparent text-base"
+                    className=" rounded-full bg-border  focus-visible:ring-transparent text-base p-1"
                     // onKeyDown={(e) => {
                     //   if (
                     //     e.key === "Enter" &&
@@ -66,12 +94,36 @@ function JournalInput(props: Readonly<Props>) {
                     //   }
                     // }}
                     end={
-                      <Button
-                        onClick={handleSend}
-                        className="rounded-full py-6 px-4 "
-                      >
-                        <Send />
-                      </Button>
+                      <>
+                        <Popover
+                          open={dropdownOpen}
+                          onOpenChange={setDropdownOpen}
+                        >
+                          <PopoverAnchor>
+                            <Button
+                              {...longPressEvent}
+                              className="rounded-full h-7 w-7 "
+                            >
+                              <Send />
+                            </Button>
+                          </PopoverAnchor>
+
+                          <PopoverContent
+                            side="top"
+                            align="end"
+                            sideOffset={1}
+                            className="flex flex-col bg-primary/80 text-white max-w-32 gap-1 text-xs p-2"
+                          >
+                            <div onClick={() => handleAddItem("todo")}>
+                              Set as a ToDo
+                            </div>
+                            <Separator />
+                            <div onClick={() => handleAddItem("habit")}>
+                              Set as a Habit
+                            </div>
+                          </PopoverContent>
+                        </Popover>
+                      </>
                     }
                   />
                 </FormControl>
