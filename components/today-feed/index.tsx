@@ -57,7 +57,7 @@ const TodayFeed = () => {
         <TodoDropdown todos={todos} onToggleTodo={handleToggleTodo} />
       </div>
       <div className="w-full h-full flex-1 overflow-y-auto">
-        <JournalLogs messages={messages} />
+        <JournalLogs messages={messages} onAddHabit={handleAddToHabit} />
       </div>
       <div className="w-full  pb-2 ">
         <JournalInput

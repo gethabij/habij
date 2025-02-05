@@ -24,15 +24,14 @@ function JournalInput(props: Readonly<Props>) {
   const { onSend, onAddTodo, onAddHabit } = props;
 
   const [inputValue, setInputValue] = useState<string>("");
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [popoverOpen, setPopoverOpen] = useState(false);
 
   const handleSend = () => {
     onSend(inputValue);
     setInputValue("");
   };
   const onLongPress = () => {
-    console.log("hey");
-    setDropdownOpen(true);
+    setPopoverOpen(true);
   };
 
   const defaultOptions = {
@@ -61,7 +60,7 @@ function JournalInput(props: Readonly<Props>) {
         onAddHabit(inputValue);
       }
       setInputValue(""); // Clear input after adding
-      setDropdownOpen(false); // Close the dropdown after adding
+      setPopoverOpen(false); // Close the dropdown after adding
     }
   };
 
@@ -94,36 +93,31 @@ function JournalInput(props: Readonly<Props>) {
                     //   }
                     // }}
                     end={
-                      <>
-                        <Popover
-                          open={dropdownOpen}
-                          onOpenChange={setDropdownOpen}
-                        >
-                          <PopoverAnchor>
-                            <Button
-                              {...longPressEvent}
-                              className="rounded-full h-7 w-7 "
-                            >
-                              <Send />
-                            </Button>
-                          </PopoverAnchor>
-
-                          <PopoverContent
-                            side="top"
-                            align="end"
-                            sideOffset={1}
-                            className="flex flex-col bg-primary/80 text-white max-w-32 gap-1 text-xs p-2"
+                      <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
+                        <PopoverAnchor>
+                          <Button
+                            {...longPressEvent}
+                            className="rounded-full h-7 w-7 "
                           >
-                            <div onClick={() => handleAddItem("todo")}>
-                              Set as a ToDo
-                            </div>
-                            <Separator />
-                            <div onClick={() => handleAddItem("habit")}>
-                              Set as a Habit
-                            </div>
-                          </PopoverContent>
-                        </Popover>
-                      </>
+                            <Send />
+                          </Button>
+                        </PopoverAnchor>
+
+                        <PopoverContent
+                          side="top"
+                          align="end"
+                          sideOffset={1}
+                          className="flex flex-col bg-primary/80 text-white max-w-32 gap-1 text-xs p-2"
+                        >
+                          <div onClick={() => handleAddItem("todo")}>
+                            Set as a ToDo
+                          </div>
+                          <Separator />
+                          <div onClick={() => handleAddItem("habit")}>
+                            Set as a Habit
+                          </div>
+                        </PopoverContent>
+                      </Popover>
                     }
                   />
                 </FormControl>
