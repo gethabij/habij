@@ -7,7 +7,7 @@ import useLongPress from "@/lib/hooks/use-long-press";
 import { Separator } from "../ui/separator";
 
 const JournalLogs = (props: Readonly<Props>) => {
-  const { messages, onAddHabit } = props;
+  const { messages, onAddHabit, setEditingMessage, setEditingIndex } = props;
 
   const [popoverOpen, setPopoverOpen] = useState(false);
 
@@ -28,10 +28,15 @@ const JournalLogs = (props: Readonly<Props>) => {
     onAddHabit(message);
     setPopoverOpen(false); // Close the dropdown after adding
   };
+
+  const handleEditMessage = (message: string, index: number) => {
+    setEditingMessage(message);
+    setEditingIndex(index);
+  };
   return (
     <div className="flex flex-col-reverse space-y-reverse  w-full space-y-2  h-full overflow-y-auto">
-      {messages.map((message) => (
-        <Popover open={popoverOpen} onOpenChange={setPopoverOpen} key={message}>
+      {messages.map((message, index) => (
+        <Popover open={popoverOpen} onOpenChange={setPopoverOpen} key={index}>
           <PopoverAnchor>
             <div
               className={"flex justify-start  items-end"}
@@ -59,7 +64,7 @@ const JournalLogs = (props: Readonly<Props>) => {
               Make it into a Habit
             </div>
             <Separator />
-            <div>Edit</div>
+            <div onClick={() => handleEditMessage(message, index)}>Edit</div>
             <Separator />
             <div>Delete</div>
           </PopoverContent>

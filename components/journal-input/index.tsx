@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import Props from "./types";
-import { Send } from "lucide-react";
+import { Check, Send } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,7 +21,14 @@ import { Popover, PopoverContent, PopoverAnchor } from "../ui/popover";
 import { Separator } from "../ui/separator";
 
 function JournalInput(props: Readonly<Props>) {
-  const { onSend, onAddTodo, onAddHabit } = props;
+  const {
+    onSend,
+    onAddTodo,
+    onAddHabit,
+    editingMessage,
+    setEditingMessage,
+    setEditingIndex,
+  } = props;
 
   const [inputValue, setInputValue] = useState<string>("");
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -34,12 +41,25 @@ function JournalInput(props: Readonly<Props>) {
     setPopoverOpen(true);
   };
 
+  const handleEditConfirm = () => {
+    onSend(inputValue);
+    setInputValue("");
+    setEditingMessage(null); // Reset editing state
+    setEditingIndex(null);
+  };
+
+  const handleEditingLongPress = () => null;
+
   const defaultOptions = {
     shouldPreventDefault: true,
     delay: 500,
   };
 
-  const longPressEvent = useLongPress(onLongPress, handleSend, defaultOptions);
+  const longPressEvent = useLongPress(
+    editingMessage ? handleEditingLongPress : onLongPress,
+    editingMessage ? handleEditConfirm : handleSend,
+    defaultOptions,
+  );
 
   const Schema = z.object({
     task: z.string({ required_error: "Please add a task" }),
@@ -63,6 +83,12 @@ function JournalInput(props: Readonly<Props>) {
       setPopoverOpen(false); // Close the dropdown after adding
     }
   };
+
+  useEffect(() => {
+    if (editingMessage) {
+      setInputValue(editingMessage);
+    }
+  }, [editingMessage]);
 
   return (
     <div className="flex items-center w-full space-x-2 text-base">
@@ -99,7 +125,7 @@ function JournalInput(props: Readonly<Props>) {
                             {...longPressEvent}
                             className="rounded-full h-7 w-7 "
                           >
-                            <Send />
+                            {editingMessage ? <Check /> : <Send />}
                           </Button>
                         </PopoverAnchor>
 

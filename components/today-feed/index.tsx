@@ -17,9 +17,21 @@ const TodayFeed = () => {
     [],
   );
 
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+
+  const [editingMessage, setEditingMessage] = useState<string | null>(null);
+
   const handleSendMessage = (message: string) => {
     if (!message.trim()) return;
-    setMessages((prev) => [message, ...prev]);
+    if (editingIndex !== null) {
+      // If editing, update the message instead of adding a new one
+      setMessages((prev) =>
+        prev.map((msg, index) => (index === editingIndex ? message : msg)),
+      );
+      setEditingIndex(null); // Reset edit mode
+    } else {
+      setMessages((prev) => [message, ...prev]);
+    }
   };
 
   const handleAddToTodo = (message: string) => {
@@ -57,13 +69,21 @@ const TodayFeed = () => {
         <TodoDropdown todos={todos} onToggleTodo={handleToggleTodo} />
       </div>
       <div className="w-full h-full flex-1 overflow-y-auto">
-        <JournalLogs messages={messages} onAddHabit={handleAddToHabit} />
+        <JournalLogs
+          messages={messages}
+          onAddHabit={handleAddToHabit}
+          setEditingIndex={setEditingIndex}
+          setEditingMessage={setEditingMessage}
+        />
       </div>
       <div className="w-full  pb-2 ">
         <JournalInput
           onSend={handleSendMessage}
           onAddTodo={handleAddToTodo}
           onAddHabit={handleAddToHabit}
+          setEditingIndex={setEditingIndex}
+          editingMessage={editingMessage}
+          setEditingMessage={setEditingMessage}
         />
       </div>
     </div>
